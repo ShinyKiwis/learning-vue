@@ -1,47 +1,40 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue';
+const message = ref("Hello, World!")
+
+const buttonAttrs = {
+  disable: true,
+  class: 'fancy-button'
+}
+
+function changeText() {
+  message.value = 'Goodbye, world'
+}
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <button v-bind="buttonAttrs" @click="changeText">Change to "Goodbye, world"</button>
+  <span>Message: {{ message.toUpperCase() }}</span>
+  <span>Message: {{ Math.random() }}</span>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+button {
+  margin-bottom: 2em;
 }
 
-.logo {
+span {
   display: block;
-  margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.fancy-button {
+  background-color: #2E85C7;
+  color: white;
+  border: none;
+  font-weight: bold;
+  padding: 0.4em 0.8em;
+  border-radius: 1em;
+  cursor: pointer;
 }
 </style>
